@@ -1,13 +1,12 @@
-from os import chdir, getcwd, listdir
+from os import chdir, getcwd, listdir, mkdir
 from os.path import exists
+from shutil import move
+from re import compile, search, I
 
 
-dirs = [
-    r"C:\Users\rouge\Videos",
-    r"C:\Users\rouge\OneDrive\Documents",
-    r"C:\Users\rouge\Downloads",
-]
 dir_name = r"C:\Users\rouge\Downloads"
+pahe_pattern = compile(r"^(animepahe)_(\w+)_-_(\d{1,4})_(\d{3,4}p)", I)
+
 if dir_name:
     valid_dir = exists(dir_name)
     if valid_dir == True:
@@ -15,10 +14,14 @@ if dir_name:
 else:
     raise Exception
 current_dir = getcwd()
-print(listdir(current_dir))
-# check for files anime
 
-# check for folders and content
+# check for all files and folders in the directory
+directory_content = listdir(current_dir)
+for value in directory_content:
+    data = pahe_pattern.search(value)
+
+
+# checks all folder for content
 
 
 # save when last it run to a file  and when last the file was updated
