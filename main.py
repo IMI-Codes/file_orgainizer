@@ -3,22 +3,50 @@ from os.path import isfile, isdir, join
 from re import compile, search, I, sub
 from variable import Downloads_Dir
 from helper import file_patterns
+from helper import file_types
+from helper import extension_check
+
+video = list()
+picture = list()
+document = list()
+script = list()
+music = list
 
 contents = Downloads_Dir()
 folders = list()
 files_details = dict()
+
 for value in contents:
     if isdir(value) == True:
         folders.append(value)
     for pattern in file_patterns:
 
         search_pattern = pattern.search(value)
+
         if search_pattern == None:
             continue
         else:
-            print(search_pattern, value, pattern)
+            file_type = search_pattern.group(1)
+            fname = value
+            files_details[fname] = file_type
+
+# try the logic to catch unknown pattern here
+# this catches files that are not there #get the extension type and send a reminder to add save to a file until it is added this to run after the re has gone through
+for f in contents:
+    if isfile(f) == True and not f in files_details:
+        extension = extension_check.search(f)
+        if extension_check != None:
+            pass
 
 
+# next step
+for file_name in files_details:
+    # handle videos
+    file_t = files_details[file_name]
+    if files_details[file_name] in file_types:
+        print(file_t)
+# account for file types that are not in the re
+# if isfile is true but not pattern claim it get the file type with .?
 """ videos = list()
 for item in dir_contents:
     if isfile(item) == True:
