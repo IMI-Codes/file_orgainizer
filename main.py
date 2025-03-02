@@ -1,13 +1,25 @@
 from os import chdir, getcwd, listdir, mkdir, makedirs
 from os.path import isfile, isdir, join
 from re import compile, search, I, sub
+from variable import Downloads_Dir
+from helper import file_patterns
 
-downloads_dir = r"C:\Users\rouge\Downloads"
-chdir(downloads_dir)
-dir_contents = listdir()
-video_pattern = compile(r"\.(mkv|mp4|webm)$")
+contents = Downloads_Dir()
+folders = list()
+files_details = dict()
+for value in contents:
+    if isdir(value) == True:
+        folders.append(value)
+    for pattern in file_patterns:
 
-videos = list()
+        search_pattern = pattern.search(value)
+        if search_pattern == None:
+            continue
+        else:
+            print(search_pattern, value, pattern)
+
+
+""" videos = list()
 for item in dir_contents:
     if isfile(item) == True:
         video = video_pattern.search(item)
@@ -17,10 +29,6 @@ for item in dir_contents:
 print(videos)
 
 # patterns
-fz_pattern = compile(r"(\w+)_-_(\w+)_")
-pahe_check_pattern = compile(r"^animepahe_(\w+)_-_", I)
-# anime_name_pattern = compile(r"_(\w+)_-_", I)
-dub_check = compile(r"_eng_dub", I)
 
 
 animes = dict()
@@ -45,10 +53,7 @@ for vid in videos:
 print(animes)
 # other videos name
 # go to videos and return only the folders
-videos_dir = r"C:\Users\rouge\Videos"
-chdir(videos_dir)
 
-vid_dir_contents = listdir()
 # handle files to check if there's videos with no folder
 vid_dir_folders = list()
 for value in vid_dir_contents:
@@ -61,12 +66,13 @@ for value in vid_dir_contents:
 # make a folder for movies,animes,series also pass my watchlist so it can it tell which is which
 for name in animes:
     if name not in vid_dir_folders:
-        base_path = videos_dir
-        final_path = join(base_path, name)
-        # mkdir(final_path)
+        name = str(name)
+        mkdir(name)
         # create a new directory and add the anime to that folder
     else:
         pass  # add the anime to that folder get file name and pass move here
 
 
 # use ep count and copy or 2 to identify duplicates
+# add logic to sort and create folder for each season if more than one
+ """
