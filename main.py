@@ -10,8 +10,8 @@ video = list()
 picture = list()
 document = list()
 script = list()
-music = list
-
+music = list()
+cat_holder = [video, picture, document, script, music]
 contents = Downloads_Dir()
 folders = list()
 files_details = dict()
@@ -44,63 +44,23 @@ for file_name in files_details:
     # handle videos
     file_t = files_details[file_name]
     if files_details[file_name] in file_types:
-        print(file_t)
-# account for file types that are not in the re
-# if isfile is true but not pattern claim it get the file type with .?
-""" videos = list()
-for item in dir_contents:
-    if isfile(item) == True:
-        video = video_pattern.search(item)
-        if video != None:
-            videos.append(item)
+        if file_t in file_types:
+            cat = file_types[file_t]
+            if cat == "video":
+                video.append(file_name)
+            elif cat == "picture":
+                picture.append(file_name)
+            elif cat == "document":
+                document.append(file_name)
+            elif cat == "script":
+                script.append(file_name)
+            elif cat == "music":
+                music.append(file_name)
 
-print(videos)
-
-# patterns
-
-
-animes = dict()
-
-
-for vid in videos:
-    pahe_video = pahe_check_pattern.search(vid)
-    fz_video = fz_pattern.search(vid)
-    if pahe_video != None:
-        anime = pahe_check_pattern.search(vid)
-        if anime != None:
-            anime_name = anime.group(1)
-            anime_name = dub_check.sub(r"", anime_name)  # returns the name without dub
-            if anime_name in animes:
-                animes[anime_name] += 1
-            else:
-                animes[anime_name] = 1
-    elif fz_video != None:
-        print(fz_video)
-
-
-print(animes)
-# other videos name
-# go to videos and return only the folders
 
 # handle files to check if there's videos with no folder
-vid_dir_folders = list()
-for value in vid_dir_contents:
-    if isdir(value) == False:
-        continue
-    else:
-        vid_dir_folders.append(value)
 
 # cross check names in folders
-# make a folder for movies,animes,series also pass my watchlist so it can it tell which is which
-for name in animes:
-    if name not in vid_dir_folders:
-        name = str(name)
-        mkdir(name)
-        # create a new directory and add the anime to that folder
-    else:
-        pass  # add the anime to that folder get file name and pass move here
-
-
+# make a folder for movies,animes,series also pass my watchlist so it can it tell which is whichs
 # use ep count and copy or 2 to identify duplicates
 # add logic to sort and create folder for each season if more than one
- """
