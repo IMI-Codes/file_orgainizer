@@ -14,6 +14,7 @@ from helper import (
     document,
     music,
 )
+from shutil import move
 
 
 contents = Downloads_Dir()
@@ -48,13 +49,14 @@ for f in contents:
                 if "unknown" in folders:
                     # unknown exists
                     # move file to unknown
-
+                    final_path = join(r"C:\Users\rouge\Downloads", f)
+                    unknown_dir = r"C:\Users\rouge\Downloads\unknown"
+                    move(final_path, unknown_dir)
                     pass  # print(extension, f)
                 else:
-                    # unknown does not exist
+                    mkdir("unknown")
                     # create new folder called unknown
                     # move file to unknown
-                    pass
 
         # send a update about the file to update the regex and to check unknown folder
 # handle folders that are in the downloads dir
