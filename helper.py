@@ -36,5 +36,16 @@ file_types = {
 }
 fz_pattern = compile(r"(\w+)_-_(\w+)_")
 pahe_check_pattern = compile(r"^animepahe_(\w+)_-_", I)
-# anime_name_pattern = compile(r"_(\w+)_-_", I)
+# anime_name_pa ttern = compile(r"_(\w+)_-_", I)
 dub_check = compile(r"_eng_dub", I)
+
+
+video = list()
+picture = list()
+document = list()
+script = list()
+music = list()
+cat_holder = [video, picture, document, script, music]
+
+folders = list()
+files_details = dict()

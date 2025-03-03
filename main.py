@@ -1,28 +1,27 @@
-from os import chdir, getcwd, listdir, mkdir, makedirs
+from os import mkdir, makedirs
 from os.path import isfile, isdir, join
-from re import compile, search, I, sub
+from re import compile, search
 from variable import Downloads_Dir
-from helper import file_patterns
-from helper import file_types
-from helper import extension_check
+from helper import (
+    file_patterns,
+    extension_check,
+    file_types,
+    folders,
+    files_details,
+    video,
+    picture,
+    script,
+    document,
+    music,
+)
 
-video = list()
-picture = list()
-document = list()
-script = list()
-music = list()
-cat_holder = [video, picture, document, script, music]
+
 contents = Downloads_Dir()
-folders = list()
-files_details = dict()
-
 for value in contents:
     if isdir(value) == True:
         folders.append(value)
     for pattern in file_patterns:
-
         search_pattern = pattern.search(value)
-
         if search_pattern == None:
             continue
         else:
@@ -32,14 +31,37 @@ for value in contents:
 
 # try the logic to catch unknown pattern here
 # this catches files that are not there #get the extension type and send a reminder to add save to a file until it is added this to run after the re has gone through
+
+# handling unknown file extensions
 for f in contents:
     if isfile(f) == True and not f in files_details:
-        extension = extension_check.search(f)
-        if extension_check != None:
-            pass
+        extension_group = extension_check.search(f)
+        if extension_group != None:
+            extension = extension_group.group(1)
+            if extension == "ini":
+                continue
+            else:
+                # check that the file exists if not create one
+                # if the file exists
+                # update
+                # save the file extension to a file and name #with date and time
+                if "unknown" in folders:
+                    # unknown exists
+                    # move file to unknown
 
+                    pass  # print(extension, f)
+                else:
+                    # unknown does not exist
+                    # create new folder called unknown
+                    # move file to unknown
+                    pass
 
+        # send a update about the file to update the regex and to check unknown folder
+# handle folders that are in the downloads dir
+# handle everything in downloads dir before moving to any other dir
 # next step
+
+
 for file_name in files_details:
     # handle videos
     file_t = files_details[file_name]
@@ -57,9 +79,10 @@ for file_name in files_details:
             elif cat == "music":
                 music.append(file_name)
 
+# videos dir
+
 
 # handle files to check if there's videos with no folder
-
 # cross check names in folders
 # make a folder for movies,animes,series also pass my watchlist so it can it tell which is whichs
 # use ep count and copy or 2 to identify duplicates
