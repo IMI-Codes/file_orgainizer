@@ -15,7 +15,11 @@ from helper import (
     music,
 )
 from shutil import move
+from datetime import datetime
 
+
+timestamp = datetime.now()
+print(timestamp)
 
 contents = Downloads_Dir()
 for value in contents:
@@ -42,10 +46,14 @@ for f in contents:
             if extension == "ini":
                 continue
             else:
-                # check that the file exists if not create one
-                # if the file exists
-                # update
                 # save the file extension to a file and name #with date and time
+                data = f"file extension : {extension}\nlast_run:{timestamp}\n"
+                try:
+                    fhand = open("logs.txt", "a")
+                    fhand.write(data)
+                except:
+                    fhand = open("logs.txt", "x")
+                    fhand.write(data)
                 if "unknown" in folders:
                     # unknown exists
                     # move file to unknown
@@ -89,3 +97,4 @@ for file_name in files_details:
 # make a folder for movies,animes,series also pass my watchlist so it can it tell which is whichs
 # use ep count and copy or 2 to identify duplicates
 # add logic to sort and create folder for each season if more than one
+# add logs of when last the script ran
