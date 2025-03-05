@@ -1,4 +1,4 @@
-from os import mkdir, makedirs
+from os import mkdir, chdir, getcwd, walk
 from os.path import isfile, isdir, join
 from re import compile, search
 from variable import Downloads_Dir
@@ -17,10 +17,9 @@ from helper import (
 from shutil import move
 from datetime import datetime
 
-
 timestamp = datetime.now()
-print(timestamp)
 
+# sorting folders and files
 contents = Downloads_Dir()
 for value in contents:
     if isdir(value) == True:
@@ -47,28 +46,28 @@ for f in contents:
                 continue
             else:
                 # save the file extension to a file and name #with date and time
-                data = f"file extension : {extension}\nlast_run:{timestamp}\n"
+                data = f"file extension : {extension}\nlast_run: {timestamp}\n"
+                # desktop = chdir(r"C:\Users\rouge\OneDrive\Desktop")
+                fhand_path = r"C:\Users\rouge\OneDrive\Desktop\log.txt"
                 try:
-                    fhand = open("logs.txt", "a")
+                    fhand = open(fhand_path, "a")
                     fhand.write(data)
                 except:
-                    fhand = open("logs.txt", "x")
+
+                    fhand = open(fhand_path, "x")
                     fhand.write(data)
-                if "unknown" in folders:
+                if "unknown" not in folders:
                     # unknown exists
                     # move file to unknown
+                    mkdir("unknown")
+                else:
                     final_path = join(r"C:\Users\rouge\Downloads", f)
                     unknown_dir = r"C:\Users\rouge\Downloads\unknown"
                     move(final_path, unknown_dir)
-                    pass  # print(extension, f)
-                else:
-                    mkdir("unknown")
                     # create new folder called unknown
                     # move file to unknown
 
-        # send a update about the file to update the regex and to check unknown folder
-# handle folders that are in the downloads dir
-# handle everything in downloads dir before moving to any other dir
+
 # next step
 
 
@@ -89,12 +88,28 @@ for file_name in files_details:
             elif cat == "music":
                 music.append(file_name)
 
-# videos dir
-
-
+# downloads dir
+# handling any folder in the downloads dir
+for folder in folders:
+    if folder == "unknown":
+        continue
+    else:
+        final_path = join(r"C:\Users\rouge\Downloads", folder)
+        for folderName, subfolders, fileNames in walk(final_path):
+            print("The Current Folder", folderName)
+            for subfolder in subfolders:
+                print("Subfolder of :", subfolder)
+                for fileName in fileNames:
+                    print("File Inside", folderName, fileName)
+# video dir
 # handle files to check if there's videos with no folder
 # cross check names in folders
 # make a folder for movies,animes,series also pass my watchlist so it can it tell which is whichs
 # use ep count and copy or 2 to identify duplicates
 # add logic to sort and create folder for each season if more than one
-# add logs of when last the script ran
+# add logs of when last the script ran for each run and the changes made
+# send a update about the file to update the regex and to check unknown folder
+# handle
+# that are in the downloads dir
+# handle everything in downloads dir before moving to any other dir
+# decouple the pattern searching into a function that is all the search for file extension should be done by a function
