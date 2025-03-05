@@ -1,29 +1,23 @@
 from os import mkdir, chdir, getcwd, walk
-from os.path import isfile, isdir, join
+from os.path import isfile, isdir, join, getsize
 from re import compile, search
 from variable import Downloads_Dir
-from helper import (
-    file_patterns,
-    extension_check,
-    file_types,
-    folders,
-    files_details,
-    video,
-    picture,
-    script,
-    document,
-    music,
-)
+from helper import *
 from shutil import move
 from datetime import datetime
 
+
 timestamp = datetime.now()
+contents = Downloads_Dir()
+
 
 # sorting folders and files
-contents = Downloads_Dir()
 for value in contents:
     if isdir(value) == True:
         folders.append(value)
+        
+        
+        
     for pattern in file_patterns:
         search_pattern = pattern.search(value)
         if search_pattern == None:
@@ -32,6 +26,12 @@ for value in contents:
             file_type = search_pattern.group(1)
             fname = value
             files_details[fname] = file_type
+
+
+#return to this
+
+
+
 
 # try the logic to catch unknown pattern here
 # this catches files that are not there #get the extension type and send a reminder to add save to a file until it is added this to run after the re has gone through
@@ -87,21 +87,38 @@ for file_name in files_details:
                 script.append(file_name)
             elif cat == "music":
                 music.append(file_name)
+#videos dir
+
+
+
+#documents dir
+
+
+#pictures dir
+
+
 
 # downloads dir
 # handling any folder in the downloads dir
-for folder in folders:
+# folders and subfolder should be saved to file that is the file structure should be saved the main thing we're after is the files
+""" for folder in folders:
     if folder == "unknown":
         continue
     else:
-        final_path = join(r"C:\Users\rouge\Downloads", folder)
+        #final_path = join(r"C:\Users\rouge\Downloads", folder)
         for folderName, subfolders, fileNames in walk(final_path):
             print("The Current Folder", folderName)
             for subfolder in subfolders:
-                print("Subfolder of :", subfolder)
-                for fileName in fileNames:
-                    print("File Inside", folderName, fileName)
-# video dir
+                sub_path = join(final_path, subfolder)
+                if getsize(sub_path) == 0:
+                    continue  # if this is empty or size is zero continue
+                else:
+                    for fileName in fileNames:
+                        print(
+                            "File Inside", folderName, fileName
+                        )  # return the file path
+                        # I return to this
+ """# video dir
 # handle files to check if there's videos with no folder
 # cross check names in folders
 # make a folder for movies,animes,series also pass my watchlist so it can it tell which is whichs

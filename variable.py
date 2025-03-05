@@ -13,3 +13,12 @@ def Videos_Dir():
     chdir(videos_dir)
     dir_contents = listdir()
     return dir_contents
+
+
+def file_extension_parse(file_name):
+    # list of patterns
+    # list of categories
+
+    # loop through list of pattern and cats
+
+    pass
