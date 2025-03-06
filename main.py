@@ -1,5 +1,5 @@
 from os import mkdir, chdir, getcwd, walk
-from os.path import isfile, isdir, join, getsize
+from os.path import isfile, isdir, join, getsize, exists
 from re import compile, search
 from helper_funcs import Downloads_Dir
 from global_vars_ import *
@@ -93,6 +93,9 @@ for folder in folders:
         continue
     else:
         base_path = join(r"C:\Users\rouge\Downloads", folder)
+        for foldernName, subfolders, fileNames in walk(base_path):
+            print("The Current Folder", foldernName)
+
 
 """
         for folderName, subfolders, fileNames in walk(final_path):
