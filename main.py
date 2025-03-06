@@ -1,8 +1,8 @@
 from os import mkdir, chdir, getcwd, walk
 from os.path import isfile, isdir, join, getsize
 from re import compile, search
-from variable import Downloads_Dir
-from helper import *
+from helper_funcs import Downloads_Dir
+from global_vars_ import *
 from shutil import move
 from datetime import datetime
 
@@ -15,9 +15,7 @@ contents = Downloads_Dir()
 for value in contents:
     if isdir(value) == True:
         folders.append(value)
-        
-        
-        
+
     for pattern in file_patterns:
         search_pattern = pattern.search(value)
         if search_pattern == None:
@@ -28,9 +26,7 @@ for value in contents:
             files_details[fname] = file_type
 
 
-#return to this
-
-
+# return to this
 
 
 # try the logic to catch unknown pattern here
@@ -87,25 +83,18 @@ for file_name in files_details:
                 script.append(file_name)
             elif cat == "music":
                 music.append(file_name)
-#videos dir
-
-
-
-#documents dir
-
-
-#pictures dir
-
 
 
 # downloads dir
 # handling any folder in the downloads dir
 # folders and subfolder should be saved to file that is the file structure should be saved the main thing we're after is the files
-""" for folder in folders:
+for folder in folders:
     if folder == "unknown":
         continue
     else:
-        #final_path = join(r"C:\Users\rouge\Downloads", folder)
+        base_path = join(r"C:\Users\rouge\Downloads", folder)
+
+"""
         for folderName, subfolders, fileNames in walk(final_path):
             print("The Current Folder", folderName)
             for subfolder in subfolders:
@@ -118,7 +107,15 @@ for file_name in files_details:
                             "File Inside", folderName, fileName
                         )  # return the file path
                         # I return to this
- """# video dir
+ """  # video dir
+
+# videos dir
+
+
+# documents dir
+
+
+# pictures dir
 # handle files to check if there's videos with no folder
 # cross check names in folders
 # make a folder for movies,animes,series also pass my watchlist so it can it tell which is whichs
