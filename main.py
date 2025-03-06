@@ -88,29 +88,31 @@ for file_name in files_details:
 # downloads dir
 # handling any folder in the downloads dir
 # folders and subfolder should be saved to file that is the file structure should be saved the main thing we're after is the files
+files_to_holder = dict()
 for folder in folders:
     if folder == "unknown":
         continue
     else:
         base_path = join(r"C:\Users\rouge\Downloads", folder)
         for foldernName, subfolders, fileNames in walk(base_path):
-            print("The Current Folder", foldernName)
-
-
-"""
-        for folderName, subfolders, fileNames in walk(final_path):
-            print("The Current Folder", folderName)
+            # print("The Current Folder", foldernName)
             for subfolder in subfolders:
-                sub_path = join(final_path, subfolder)
-                if getsize(sub_path) == 0:
-                    continue  # if this is empty or size is zero continue
-                else:
-                    for fileName in fileNames:
-                        print(
-                            "File Inside", folderName, fileName
-                        )  # return the file path
-                        # I return to this
- """  # video dir
+                # print("Sub folder of", foldernName, "folder name", subfolder)
+                for fileName in fileNames:
+                    # get the file and file_path
+                    folder_path = foldernName
+                    file_name = fileName
+                    file_name_path = join(folder_path, file_name)
+                    files_to_holder[file_name] = file_name_path
+
+print(files_to_holder)
+
+# move files to a directory called staging
+if "staging" in folders:
+    pass
+else:
+    pass
+
 
 # videos dir
 
