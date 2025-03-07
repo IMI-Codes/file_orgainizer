@@ -1,20 +1,20 @@
 from os import mkdir, chdir, getcwd, walk, listdir
 from os.path import isfile, isdir, join, getsize, exists
 from re import compile, search
-from helper_funcs import Downloads_Dir
+from helper_funcs import dir_file_and_folders, change_dir
 from global_vars_ import *
 from shutil import move
 from datetime import datetime
 
 
 timestamp = datetime.now()
-contents = Downloads_Dir()
-
+downloads_path = r"C:\Users\rouge\Downloads"
+contents = change_dir(downloads_path)
 
 # sorting folders and files
-for value in contents:
-    if isdir(value) == True:
-        folders.append(value)
+folders, files = dir_file_and_folders(contents)
+
+""" 
 
     for pattern in file_patterns:
         search_pattern = pattern.search(value)
@@ -24,7 +24,7 @@ for value in contents:
             file_type = search_pattern.group(1)
             fname = value
             files_details[fname] = file_type
-
+ """
 
 # return to this
 
@@ -33,7 +33,7 @@ for value in contents:
 # this catches files that are not there #get the extension type and send a reminder to add save to a file until it is added this to run after the re has gone through
 
 # handling unknown file extensions
-for f in contents:
+""" for f in contents:
     if isfile(f) == True and not f in files_details:
         extension_group = extension_check.search(f)
         if extension_group != None:
@@ -43,8 +43,8 @@ for f in contents:
             else:
                 # save the file extension to a file and name #with date and time
                 data = f"file extension : {extension}\nlast_run: {timestamp}\n"
-                # desktop = chdir(r"C:\Users\rouge\OneDrive\Desktop")
-                fhand_path = r"C:\Users\rouge\OneDrive\Desktop\log.txt"
+                # desktop = chdir(r"C:/Users/rouge/OneDrive/Desktop")
+                fhand_path = r"C:/Users/rouge/OneDrive/Desktop/log.txt"
                 try:
                     fhand = open(fhand_path, "a")
                     fhand.write(data)
@@ -57,8 +57,8 @@ for f in contents:
                     # move file to unknown
                     mkdir("unknown")
                 else:
-                    final_path = join(r"C:\Users\rouge\Downloads", f)
-                    unknown_dir = r"C:\Users\rouge\Downloads\unknown"
+                    final_path = join(r"C:.Users.rouge.Downloads", f)
+                    unknown_dir = r"C:.Users.rouge.Downloads.unknown"
                     move(final_path, unknown_dir)
                     # create new folder called unknown
                     # move file to unknown
@@ -93,7 +93,7 @@ for folder in folders:
     if folder == "unknown":
         continue
     else:
-        base_path = join(r"C:\Users\rouge\Downloads", folder)
+        base_path = join(r"C:/Users/rouge/Downloads", folder)
         for foldernName, subfolders, fileNames in walk(base_path):
 
             for subfolder in subfolders:
@@ -110,12 +110,12 @@ for folder in folders:
 # move files to a directory called staging
 if "staging" in folders:
     for file_name in files_to_holder:
-        move(files_to_holder[file_name], r"C:\Users\rouge\Downloads\staging")
+        move(files_to_holder[file_name], r"C:/Users/rouge/Downloads/staging")
 else:
     mkdir("staging")
 
 # handling files in staging
-chdir(r"C:\Users\rouge\Downloads\staging")
+chdir(r"C:/Users/rouge/Downloads/staging")
 staging_contents = listdir()
 
 for content in staging_contents:
@@ -151,7 +151,7 @@ for cat in cat_holder:
     if len(cat) == 0:
         continue
     else:
-        print(cat, "\n\n")
+        print(cat, "\n\n") """
 
 # videos dir
 # documents dir

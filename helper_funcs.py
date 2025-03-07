@@ -1,24 +1,30 @@
 from os import chdir, listdir
+from os.path import isdir, isfile
 
 
-def Downloads_Dir():
-    downloads_dir = r"C:\Users\rouge\Downloads"
-    chdir(downloads_dir)
+def change_dir(path: str):
+    chdir(path)
     dir_contents = listdir()
     return dir_contents
 
 
-def Videos_Dir():
-    videos_dir = r"C:\Users\rouge\Videos"
-    chdir(videos_dir)
-    dir_contents = listdir()
-    return dir_contents
+def dir_file_and_folders(dir_contents: list):
+    folders = list()
+    files = list()
+    for item in dir_contents:
+        isFolder = isdir(item)
+        isFiletype = isfile(item)
+        if isFolder and isFolder == True:
+            folders.append(item)
+        elif isFiletype and isFiletype == True:
+            files.append(item)
+    return folders, files
 
 
-def file_extension_parse(file_name):
-    # list of patterns
-    # list of categories
-
-    # loop through list of pattern and cats
-
-    pass
+def file_type(value: list | str):
+    valueType = type(value)
+    if valueType == list:
+        for f in value:
+            pass
+    else:
+        pass

@@ -8,6 +8,7 @@ sounds_pattern = compile(r"\.(mp3)$")
 
 extension_check = compile(r"\.(\w+)$")
 
+
 file_patterns = [
     video_pattern,
     picture_pattern,
@@ -16,6 +17,16 @@ file_patterns = [
     sounds_pattern,
 ]
 
+file_types = {
+    "video": ["mkv", "mp4", "webm"],
+    "picture": ["jpg", "png", "svg"],
+    "document": ["pdf", "txt", "pptx", "docx", "pem"],
+    "script": ["exe", "py", "ps1", "bat"],
+    "music": ["mp3"],
+}
+
+
+""" 
 file_types = {
     "mkv": "video",
     "mp4": "video",
@@ -33,7 +44,7 @@ file_types = {
     "bat": "script",
     "mp3": "music",
     "pem": "document",
-}
+} """
 fz_pattern = compile(r"(\w+)_-_(\w+)_")
 pahe_check_pattern = compile(r"^animepahe_(\w+)_-_", I)
 # anime_name_pa ttern = compile(r"_(\w+)_-_", I)
