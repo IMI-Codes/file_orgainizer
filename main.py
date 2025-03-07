@@ -1,4 +1,4 @@
-from os import mkdir, chdir, getcwd, walk
+from os import mkdir, chdir, getcwd, walk, listdir
 from os.path import isfile, isdir, join, getsize, exists
 from re import compile, search
 from helper_funcs import Downloads_Dir
@@ -95,28 +95,65 @@ for folder in folders:
     else:
         base_path = join(r"C:\Users\rouge\Downloads", folder)
         for foldernName, subfolders, fileNames in walk(base_path):
-            # print("The Current Folder", foldernName)
+
             for subfolder in subfolders:
-                # print("Sub folder of", foldernName, "folder name", subfolder)
+
                 for fileName in fileNames:
                     # get the file and file_path
+                    # modify to account for empty directories and merge with the moving logic to move and then delete the directory
                     folder_path = foldernName
                     file_name = fileName
                     file_name_path = join(folder_path, file_name)
                     files_to_holder[file_name] = file_name_path
 
-print(files_to_holder)
-
+# print(files_to_holder)
 # move files to a directory called staging
 if "staging" in folders:
-    pass
+    for file_name in files_to_holder:
+        move(files_to_holder[file_name], r"C:\Users\rouge\Downloads\staging")
 else:
-    pass
+    mkdir("staging")
 
+# handling files in staging
+chdir(r"C:\Users\rouge\Downloads\staging")
+staging_contents = listdir()
+
+for content in staging_contents:
+
+    content_ext_check = extension_check.search(content)
+    if content_ext_check == None:
+        continue
+    else:
+        content_ext = content_ext_check.group(1)
+        content_file_name = content
+        files_details[content_file_name] = content_ext
+
+
+for file_name in files_details:
+    # handle videos
+    file_t = files_details[file_name]
+    if files_details[file_name] in file_types:
+        if file_t in file_types:
+            cat = file_types[file_t]
+            if cat == "video":
+                video.append(file_name)
+            elif cat == "picture":
+                picture.append(file_name)
+            elif cat == "document":
+                document.append(file_name)
+            elif cat == "script":
+                script.append(file_name)
+            elif cat == "music":
+                music.append(file_name)
+
+
+for cat in cat_holder:
+    if len(cat) == 0:
+        continue
+    else:
+        print(cat, "\n\n")
 
 # videos dir
-
-
 # documents dir
 
 
