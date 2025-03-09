@@ -24,7 +24,7 @@ def dir_file_and_folders(dir_contents: list):
 
 
 def file_type(value: list | str):
-
+    # modify to skip the .ini
     valueType = type(value)
     extension_check = compile(r"\.(\w+)$")
     file_and_ext = dict()
@@ -49,13 +49,25 @@ def file_type(value: list | str):
         return {file_name: file_ext}  # type: ignore
 
 
-def determine_cat(value: dict | str):
-    valueType = type(value)
-    if valueType == dict:
-        pass
-
+def determine_cat(files: dict | str) -> tuple | dict[any, any]:  # type: ignore
+    determine_type = type(files)
+    if determine_type == dict:
+        for f in files:
+            pass
     else:
-        pass  # call the file_type function
+        pass
+    # Input: a dict of files_names and the extensions if it's a .ini ignore
+    # check the extensions with a dictionary of known extensions
+    # return a category for each file name
+    # return a dictionary of file_name and category
+    # if category can't be decided return a message that the extension type is unknown and should be updated
+
+    # for a str
+    # check determine the extension type
+    # determine category
+    # return a tuple of file_name and category
+    # a dict of files_names and the extensions if it's a .ini ignore
+    pass
 
 
 # Inputs: dictionary or str
