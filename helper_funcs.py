@@ -50,24 +50,30 @@ def file_type(value: list | str):
 
 
 def determine_cat(files: dict | str) -> tuple | dict[any, any]:  # type: ignore
+    file_name_category = dict()
     determine_type = type(files)
     if determine_type == dict:
         for f in files:
-            pass
-    else:
-        pass
-    # Input: a dict of files_names and the extensions if it's a .ini ignore
-    # check the extensions with a dictionary of known extensions
-    # return a category for each file name
-    # return a dictionary of file_name and category
-    # if category can't be decided return a message that the extension type is unknown and should be updated
+            ext = files[f]  # type: ignore
+            for cat in file_types:
+                for value in file_types[cat]:
+                    # check the extensions with a dictionary of known extensions
+                    if value == ext:
+                        # return a category for each file name
+                        category = cat
+                        file_name = f
+                        # return a dictionary of file_name and category
+                        file_name_category[file_name] = category
+        return file_name_category
 
-    # for a str
-    # check determine the extension type
-    # determine category
-    # return a tuple of file_name and category
-    # a dict of files_names and the extensions if it's a .ini ignore
-    pass
+        # if category can't be decided return a message that the extension type is unknown and should be updated check if the file name is in file_name_category else flag the extension type
+
+    else:
+        # for a str
+        # check determine the extension type
+        # determine category
+        # return a tuple of file_name and category
+        pass
 
 
 # Inputs: dictionary or str

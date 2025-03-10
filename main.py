@@ -15,10 +15,10 @@ contents = change_dir(downloads_path)
 folders, files = dir_file_and_folders(contents)
 
 # returning the file_name and file_extensions
-# file_type(files)
+print(files)
+f_types = file_type(files)
 
-file_type(files)
-determine_cat(file_type(files))
+print(determine_cat(f_types))
 # save whenever the script runs and changes made account for the desktop.ini save to a file flag unknowns and move them to the unknown folder
 # handling the folder in download better still logic for handling folder and their content in each directory(videos dir documents dir pictures dir)
 # make a folder for movies,animes,series also pass my watchlist so it can it tell which is whichs
