@@ -23,7 +23,9 @@ def dir_file_and_folders(dir_contents: list):
     return folders, files
 
 
-def file_type(value: list | str):
+def file_type(
+    value: list | str,
+):  # -> str | dict[Any, Any] | tuple[list[Any] | str, Any]:
     # modify to skip the .ini
     valueType = type(value)
     extension_check = compile(r"\.(\w+)$")
@@ -46,11 +48,13 @@ def file_type(value: list | str):
 
             file_name = value
             file_ext = ext.group(1)
-        return {file_name: file_ext}  # type: ignore
+        return file_name, file_ext
 
 
-def determine_cat(files: dict | str) -> tuple | dict[any, any]:  # type: ignore
+def determine_cat(files: dict | str):
+
     file_name_category = dict()
+    unknown_exts = dict()
     determine_type = type(files)
     if determine_type == dict:
         for f in files:
@@ -64,23 +68,21 @@ def determine_cat(files: dict | str) -> tuple | dict[any, any]:  # type: ignore
                         file_name = f
                         # return a dictionary of file_name and category
                         file_name_category[file_name] = category
-        return file_name_category
-
+            if f not in file_name_category:
+                unknown_exts[f] = ext
+        if len(unknown_exts) != 0:
+            return file_name_category, unknown_exts
+        else:
+            return file_name_category
         # if category can't be decided return a message that the extension type is unknown and should be updated check if the file name is in file_name_category else flag the extension type
 
     else:
         # for a str
-        # check determine the extension type
+        file_name, ext = file_type(files)  # type: ignore
+
         # determine category
         # return a tuple of file_name and category
-        pass
 
 
 # Inputs: dictionary or str
 # Logic: look at the extension and determine the file type based of a list of existing known extensions
-
-
-"""  for value in file_types:
-        print(file_types[value], value)
-        for value in file_types[value]:
-            print(value) """
