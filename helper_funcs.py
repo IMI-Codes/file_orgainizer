@@ -23,7 +23,7 @@ def dir_file_and_folders(dir_contents: list):
     return folders, files
 
 
-def file_type(
+def get_extension_file_name(
     value: list | str,
 ):  # -> str | dict[Any, Any] | tuple[list[Any] | str, Any]:
     # modify to skip the .ini
@@ -79,10 +79,14 @@ def determine_cat(files: dict | str):
     else:
         # for a str
         file_name, ext = file_type(files)  # type: ignore
+        category = None
 
-        # determine category
-        # return a tuple of file_name and category
-
-
-# Inputs: dictionary or str
-# Logic: look at the extension and determine the file type based of a list of existing known extensions
+        for value in file_types:
+            for e in file_types[value]:
+                if e == ext:
+                    # determine category
+                    category = value
+                    # return a tuple of file_name and category
+                    return file_name, category
+        if category == None:
+            return f"Unknown Extension Type {ext}, {file_name}"
