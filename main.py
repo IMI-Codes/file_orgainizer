@@ -44,7 +44,8 @@ else:
     fhand = open(log_file, "a")
 
 # handling the folder in each dir
-get_files_from_folders(folders)
+# this get the file_path for every file in every folder in downloads
+folder_files = get_files_from_folders(folders, downloads_path)
 
 # handling the folder in download better still logic for handling folder and their content in each directory(videos dir documents dir pictures dir)
 # make a folder for movies,animes,series also pass my watchlist so it can it tell which is whichs

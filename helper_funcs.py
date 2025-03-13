@@ -1,5 +1,5 @@
 from os import chdir, listdir, walk
-from os.path import isdir, isfile
+from os.path import isdir, isfile, join
 from re import compile
 from global_vars_ import file_types
 
@@ -92,11 +92,20 @@ def determine_cat(files: dict | str):
             return f"Unknown Extension Type {ext}, {file_name}"
 
 
-def get_files_from_folders(folders: list):
+def get_files_from_folders(folders: list, dir_path: str):
     files_paths = list()
     for f in folders:
         for folders, subfolders, filenames in walk(f):
             if len(filenames) == 0:
                 continue
+            elif folders == "unknown" or folders == "staging":
+                continue
+            elif len(filenames) > 1:
+                for fi in filenames:
+                    file_path = join(folders, fi)  # type: ignore
             else:
-                print(f"{filenames}, {folders}")
+                file_path = join(folders, filenames[0])  # type: ignore
+            full_path = join(dir_path, file_path)  # type: ignore
+            files_paths.append(full_path)
+    return files_paths
+    # full_path = join(dir_path, file_path)
