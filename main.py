@@ -6,6 +6,7 @@ from helper_funcs import (
     change_dir,
     get_extension_file_name,
     determine_cat,
+    get_files_from_folders,
 )
 from global_vars_ import *
 from shutil import move
@@ -17,8 +18,8 @@ downloads_path = r"C:\Users\rouge\Downloads"
 contents = change_dir(downloads_path)
 
 documents_path = r"C:\Users\rouge\OneDrive\Documents"
-logs_path = join(documents_path, r"CustomSystemLogs\file_organizer")
-print(logs_path)
+logs_path = join(documents_path, r"CustomSystemLogs\file_organizer_logs")
+
 # sorting folders and files
 folders, files = dir_file_and_folders(contents)
 
@@ -33,19 +34,17 @@ file_cats, unknown = determine_cat(f_types)  # type: ignore
 if "desktop.ini" in unknown:
     del unknown["desktop.ini"]  # type: ignore
 # handling unknown file types
-
 # check if the path to the logs folders exist
-check_path = exists(logs_path)
-print(check_path)
-print(logs_path)
-if check_path == False:
-    makedirs(logs_path)
-else:
-    pass
-
-
 # save whenever the script runs and changes made account for the desktop.ini save to a file flag unknowns and move them to the unknown folder
+check_path = exists(logs_path)
+log_file = join(logs_path, r"logs.txt")
+if check_path == False:
+    pass  # makedirs(logs_path) get this to work
+else:
+    fhand = open(log_file, "a")
 
+# handling the folder in each dir
+get_files_from_folders(folders)
 
 # handling the folder in download better still logic for handling folder and their content in each directory(videos dir documents dir pictures dir)
 # make a folder for movies,animes,series also pass my watchlist so it can it tell which is whichs

@@ -1,4 +1,4 @@
-from os import chdir, listdir
+from os import chdir, listdir, walk
 from os.path import isdir, isfile
 from re import compile
 from global_vars_ import file_types
@@ -90,3 +90,13 @@ def determine_cat(files: dict | str):
                     return file_name, category
         if category == None:
             return f"Unknown Extension Type {ext}, {file_name}"
+
+
+def get_files_from_folders(folders: list):
+    files_paths = list()
+    for f in folders:
+        for folders, subfolders, filenames in walk(f):
+            if len(filenames) == 0:
+                continue
+            else:
+                print(f"{filenames}, {folders}")
