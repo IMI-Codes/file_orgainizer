@@ -12,16 +12,26 @@ from global_vars_ import *
 from shutil import move
 from datetime import datetime
 
-# handle everything in downloads dir before moving to any other dir
 timestamp = datetime.now()
 downloads_path = r"C:\Users\rouge\Downloads"
 contents = change_dir(downloads_path)
-
 documents_path = r"C:\Users\rouge\OneDrive\Documents"
 logs_path = join(documents_path, r"CustomSystemLogs\file_organizer_logs")
 
-# sorting folders and files
+
+# STARTING FROM THE DOWNLOADS DIRECTORY
+
+
+# CONTENTS OF THE DOWNLOADS DIRECTORY
+
+
 folders, files = dir_file_and_folders(contents)
+# MANUALLY DELETE UNKNOWN AND STAGING
+# WALKING THROUGH FOLDERS AND RETURNING THE FILES WITHIN THE FOLDERS
+
+get_files_from_folders(folders, downloads_path)
+""" 
+
 
 # create logic for walking through the folders and return the file paths for any files
 
@@ -38,22 +48,14 @@ if "desktop.ini" in unknown:
 # save whenever the script runs and changes made account for the desktop.ini save to a file flag unknowns and move them to the unknown folder
 check_path = exists(logs_path)
 log_file = join(logs_path, r"logs.txt")
+
+print(logs_path)
 if check_path == False:
-    pass  # makedirs(logs_path) get this to work
+    makedirs(logs_path, exist_ok=True)
 else:
-    fhand = open(log_file, "a")
+    print("already exists")
 
 # handling the folder in each dir
 # this get the file_path for every file in every folder in downloads
 folder_files = get_files_from_folders(folders, downloads_path)
-
-# handling the folder in download better still logic for handling folder and their content in each directory(videos dir documents dir pictures dir)
-# make a folder for movies,animes,series also pass my watchlist so it can it tell which is whichs
-# use ep count and copy or 2 to identify duplicates and deleting them
-# add logic to sort and create folder for each season if more than one
-# add logs of when last the script ran for each run and the changes made
-# send a update about the file to update the regex and to check unknown folder
-# handle
-# that are in the downloads dir
-
-# decouple the pattern searching into a function that is all the search for file extension should be done by a function
+ """

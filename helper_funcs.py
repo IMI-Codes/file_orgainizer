@@ -96,16 +96,18 @@ def get_files_from_folders(folders: list, dir_path: str):
     files_paths = list()
     for f in folders:
         for folders, subfolders, filenames in walk(f):
-            if len(filenames) == 0:
-                continue
-            elif folders == "unknown" or folders == "staging":
-                continue
-            elif len(filenames) > 1:
-                for fi in filenames:
-                    file_path = join(folders, fi)  # type: ignore
-            else:
-                file_path = join(folders, filenames[0])  # type: ignore
-            full_path = join(dir_path, file_path)  # type: ignore
-            files_paths.append(full_path)
-    return files_paths
-    # full_path = join(dir_path, file_path)
+            for filename in filenames:
+                print(filename, folders)
+            """if len(filenames) == 0:
+                        continue
+                    elif folders == "unknown" or folders == "staging":
+                        continue
+                    elif len(filenames) > 1:
+                        for fi in filenames:
+                            file_path = join(folders, fi)  # type: ignore
+                    else:
+                        file_path = join(folders, filenames[0])  # type: ignore
+                    full_path = join(dir_path, file_path)  # type: ignore
+                    files_paths.append(full_path)
+            return files_paths
+            # full_path = join(dir_path, file_path)"""
