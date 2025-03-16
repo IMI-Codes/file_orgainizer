@@ -27,8 +27,8 @@ logs_path = join(documents_path, r"CustomSystemLogs\file_organizer_logs")
 
 folders, files = dir_file_and_folders(contents)
 # MANUALLY DELETE UNKNOWN AND STAGING
-folders.remove("holder")
-holder_dir_path = join(downloads_path, "holder")
+folders.remove("unknown")
+holder_dir_path = join(downloads_path, "unknown")
 
 folders.remove("staging")
 staging_dir_path = join(downloads_path, "staging")
@@ -36,4 +36,6 @@ staging_dir_path = join(downloads_path, "staging")
 
 # WALKING THROUGH FOLDERS AND RETURNING THE FILES WITHIN THE FOLDERS
 # ALL FILES IN ANY OTHER FOLDER IN THE DOWNLOADS DIR
-get_files_from_folders(folders, downloads_path)
+all_subfolder_files = get_files_from_folders(folders, downloads_path)
+
+# NEXT GOAL DETERMINING CATS AND EXTENSIONS AND MOVING
