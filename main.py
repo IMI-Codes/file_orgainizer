@@ -39,3 +39,10 @@ staging_dir_path = join(downloads_path, "staging")
 all_subfolder_files = get_files_from_folders(folders, downloads_path)
 
 # NEXT GOAL DETERMINING CATS AND EXTENSIONS AND MOVING
+download_files = list()
+for f in files:
+    f_paths = join(downloads_path, f)
+    download_files.append(f_paths)
+
+# PUTS ALL FILES IN THE DOWNLOADS DIR AND EVERY FILE IN EVERY SUBFOLDER IN ONE CONTAINER
+all_files = download_files + all_subfolder_files

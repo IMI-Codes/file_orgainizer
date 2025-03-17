@@ -4,10 +4,14 @@ from re import compile
 from global_vars_ import file_types
 
 
+# VERIFIED FUNCTIONS
 def change_dir(path: str):
     chdir(path)
     dir_contents = listdir()
     return dir_contents
+
+
+# ||||||||||||||||| FUNCTIONS TO BE MODIFIED ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 
 def dir_file_and_folders(dir_contents: list):
@@ -21,6 +25,21 @@ def dir_file_and_folders(dir_contents: list):
         elif isFiletype and isFiletype == True:
             files.append(item)
     return folders, files
+
+
+def get_files_from_folders(folders: list, dir_path: str):
+    files_paths = list()
+    for f in folders:
+        for folders, subfolders, filenames in walk(f):
+            for filename in filenames:
+                base_path = join(folders, filename)  # type: ignore
+                final_path = join(dir_path, base_path)
+                files_paths.append(final_path)
+    return files_paths
+
+
+def sort_files():
+    pass
 
 
 def get_extension_file_name(
@@ -90,14 +109,3 @@ def determine_cat(files: dict | str):
                     return file_name, category
         if category == None:
             return f"Unknown Extension Type {ext}, {file_name}"
-
-
-def get_files_from_folders(folders: list, dir_path: str):
-    files_paths = list()
-    for f in folders:
-        for folders, subfolders, filenames in walk(f):
-            for filename in filenames:
-                base_path = join(folders, filename)  # type: ignore
-                final_path = join(dir_path, base_path)
-                files_paths.append(final_path)
-    return files_paths
