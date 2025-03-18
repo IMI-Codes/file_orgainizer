@@ -11,19 +11,18 @@ def change_dir(path: str):
     return dir_contents
 
 
-# ||||||||||||||||| FUNCTIONS TO BE MODIFIED ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-
-
-def dir_file_and_folders(dir_contents: list):
+def dir_file_and_folders(dir_contents: list, base_path: str):
     folders = list()
     files = list()
     for item in dir_contents:
         isFolder = isdir(item)
         isFiletype = isfile(item)
-        if isFolder and isFolder == True:
-            folders.append(item)
-        elif isFiletype and isFiletype == True:
-            files.append(item)
+        if isFolder == True:
+            folder_path = join(base_path, item)
+            folders.append(folder_path)
+        if isFiletype == True:
+            file_path = join(base_path, item)
+            files.append(file_path)
     return folders, files
 
 
@@ -36,10 +35,6 @@ def get_files_from_folders(folders: list, dir_path: str):
                 final_path = join(dir_path, base_path)
                 files_paths.append(final_path)
     return files_paths
-
-
-def sort_files():
-    pass
 
 
 def get_extension_file_name(
@@ -70,42 +65,8 @@ def get_extension_file_name(
         return file_name, file_ext
 
 
+# ||||||||||||||||| FUNCTIONS TO BE MODIFIED ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+
 def determine_cat(files: dict | str):
-
-    file_name_category = dict()
-    unknown_exts = dict()
-    determine_type = type(files)
-    if determine_type == dict:
-        for f in files:
-            ext = files[f]  # type: ignore
-            for cat in file_types:
-                for value in file_types[cat]:
-                    # check the extensions with a dictionary of known extensions
-                    if value == ext:
-                        # return a category for each file name
-                        category = cat
-                        file_name = f
-                        # return a dictionary of file_name and category
-                        file_name_category[file_name] = category
-            if f not in file_name_category:
-                unknown_exts[f] = ext
-        if len(unknown_exts) != 0:
-            return file_name_category, unknown_exts
-        else:
-            return file_name_category
-        # if category can't be decided return a message that the extension type is unknown and should be updated check if the file name is in file_name_category else flag the extension type
-
-    else:
-        # for a str
-        file_name, ext = file_type(files)  # type: ignore
-        category = None
-
-        for value in file_types:
-            for e in file_types[value]:
-                if e == ext:
-                    # determine category
-                    category = value
-                    # return a tuple of file_name and category
-                    return file_name, category
-        if category == None:
-            return f"Unknown Extension Type {ext}, {file_name}"
+    pass

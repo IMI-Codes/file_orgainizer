@@ -19,30 +19,23 @@ documents_path = r"C:\Users\rouge\OneDrive\Documents"
 logs_path = join(documents_path, r"CustomSystemLogs\file_organizer_logs")
 
 
-# STARTING FROM THE DOWNLOADS DIRECTORY
-
+# ||||||||||||| DOWNLOADS DIRECTORY |||||||||||||||
+unknown_dir_path = join(downloads_path, "unknown")
+staging_dir_path = join(downloads_path, "staging")
 
 # CONTENTS OF THE DOWNLOADS DIRECTORY
 
+folders, files = dir_file_and_folders(contents, downloads_path)
 
-folders, files = dir_file_and_folders(contents)
 # MANUALLY DELETE UNKNOWN AND STAGING
-folders.remove("unknown")
-holder_dir_path = join(downloads_path, "unknown")
 
-folders.remove("staging")
-staging_dir_path = join(downloads_path, "staging")
+if unknown_dir_path and staging_dir_path in folders:
+    folders.remove(unknown_dir_path)
+    folders.remove(staging_dir_path)
 
+# GETTING ALL FILES IN THE SUBFOLDER AND MERGING ALL FILES TOGETHER
+all_files = get_files_from_folders(folders, downloads_path) + files
 
-# WALKING THROUGH FOLDERS AND RETURNING THE FILES WITHIN THE FOLDERS
-# ALL FILES IN ANY OTHER FOLDER IN THE DOWNLOADS DIR
-all_subfolder_files = get_files_from_folders(folders, downloads_path)
+file_name_and_extension = get_extension_file_name(all_files)
 
-# NEXT GOAL DETERMINING CATS AND EXTENSIONS AND MOVING
-download_files = list()
-for f in files:
-    f_paths = join(downloads_path, f)
-    download_files.append(f_paths)
-
-# PUTS ALL FILES IN THE DOWNLOADS DIR AND EVERY FILE IN EVERY SUBFOLDER IN ONE CONTAINER
-all_files = download_files + all_subfolder_files
+print(determine_cat(file_name_and_extension))  # type: ignore
