@@ -10,11 +10,22 @@ extension_check = compile(r"\.(\w+)$")
 
 
 file_types = {
-    "video": ["mkv", "mp4", "webm"],
-    "picture": ["jpg", "png", "svg"],
-    "document": ["pdf", "txt", "pptx", "docx", "pem"],
-    "script": ["exe", "py", "ps1", "bat"],
-    "music": ["mp3"],
+    "mkv": "video",
+    "mp4": "video",
+    "webm": "video",
+    "jpg": "picture",
+    "png": "picture",
+    "svg": "picture",
+    "pdf": "document",
+    "txt": "document",
+    "pptx": "document",
+    "docx": "document",
+    "pem": "document",
+    "exe": "script",
+    "py": "script",
+    "ps1": "script",
+    "bat": "script",
+    "mp3": "music",
 }
 
 

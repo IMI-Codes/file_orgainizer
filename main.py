@@ -38,4 +38,5 @@ all_files = get_files_from_folders(folders, downloads_path) + files
 
 file_name_and_extension = get_extension_file_name(all_files)
 
-print(determine_cat(file_name_and_extension))  # type: ignore
+
+determine_cat(file_name_and_extension)  # type: ignore

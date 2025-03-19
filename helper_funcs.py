@@ -65,8 +65,31 @@ def get_extension_file_name(
         return file_name, file_ext
 
 
-# ||||||||||||||||| FUNCTIONS TO BE MODIFIED ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-
-
 def determine_cat(files: dict | str):
-    pass
+    determine_collection = type(files)
+    unknown_types = dict()
+    file_name_cat = dict()
+    if determine_collection == dict:
+        for f in files:
+            ext = files[f]  # type: ignore
+            if ext in file_types:
+                file_name_cat[f] = file_types[ext]
+            else:
+                unknown_types[f] = ext
+    else:
+        f, f_ext = get_extension_file_name(files)  # type: ignore
+        if f_ext in file_types:
+            return f, file_types[f_ext]
+        else:
+            return {
+                "Message": "Unknown File Type",
+                "file_name": f,
+                "file_extension": f_ext,
+            }
+    if file_name_cat and unknown_types:
+
+        return file_name_cat, unknown_types
+    elif file_name_cat:
+        return file_name_cat
+    elif unknown_types:
+        return unknown_types

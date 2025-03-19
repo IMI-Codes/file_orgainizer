@@ -4,7 +4,4 @@
 # add logic to sort and create folder for each season if more than one
 # add logs of when last the script ran for each run and the changes made
 # send a update about the file to update the regex and to check unknown folder
-# handle
-# that are in the downloads dir
 
-# decouple the pattern searching into a function that is all the search for file extension should be done by a function
