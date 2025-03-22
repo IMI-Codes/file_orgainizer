@@ -17,7 +17,7 @@ documents_path = r"C:\Users\rouge\OneDrive\Documents"
 logs_path = join(documents_path, r"CustomSystemLogs")
 
 
-# |||||||||||| CREATING A LOG FILE FOR EACH TIME THE CODE RUNS ||||||||||||||||||||||||||||||
+# |||||||||||| CREATING A LOG FILE FOR EACH TIME THE CODE RUNS |||||||||||||||||||||||
 
 
 str_time_stamp = str(timestamp).split()
@@ -25,16 +25,6 @@ c_date, c_time = str_time_stamp
 new_c_time = c_time.replace(":", "-").replace(".", "-")
 
 
-f_timestamp = f"{c_date}_{new_c_time}"
-log_file_name = f"File_Organizer_{f_timestamp}.txt"
-fhand = open(log_file_name, "x")
-
-
-logs_path_valid = exists(logs_path)
-if logs_path_valid == True:
-    pass
-else:
-    makedirs(logs_path)
 # Create a log file immediately the code starts to run
 # check if the dir is there
 # create a custom log for that date and time
