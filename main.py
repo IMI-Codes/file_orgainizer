@@ -24,6 +24,8 @@ str_time_stamp = str(timestamp).split()
 c_date, c_time = str_time_stamp
 new_c_time = c_time.replace(":", "-").replace(".", "-")
 
+makedirs(getcwd(), exist_ok=True)
+fhand = open("NewLog.txt", "w")
 
 # Create a log file immediately the code starts to run
 # check if the dir is there
