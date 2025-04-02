@@ -16,16 +16,18 @@ timestamp = datetime.now()
 documents_path = r"C:\Users\rouge\OneDrive\Documents"
 logs_path = join(documents_path, r"CustomSystemLogs")
 
-
-# |||||||||||| CREATING A LOG FILE FOR EACH TIME THE CODE RUNS |||||||||||||||||||||||
-
-
 str_time_stamp = str(timestamp).split()
 c_date, c_time = str_time_stamp
 new_c_time = c_time.replace(":", "-").replace(".", "-")
 
+# |||||||||||| CREATING A LOG FILE FOR EACH TIME THE CODE RUNS |||||||||||||||||||||||
 
-fhand = open(r"C:\Users\rouge\OneDrive\Documents\sourceCodes\project\file_orgainizer\newText.txt", "x")
+
+
+
+
+
+
 
 # Create a log file immediately the code starts to run
 # check if the dir is there
