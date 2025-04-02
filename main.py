@@ -1,5 +1,10 @@
+<<<<<<< Updated upstream
 from os import mkdir, chdir, getcwd, walk, listdir, makedirs
 from os.path import isfile, isdir, join, getsize, exists
+=======
+from os import mkdir, chdir, walk, listdir
+from os.path import isfile, isdir, join
+>>>>>>> Stashed changes
 from re import compile, search
 from helper_funcs import (
     dir_file_and_folders,
@@ -87,4 +92,28 @@ if unknown_f_types:  # type: ignore
 
 # clean up downloads directory
 
+<<<<<<< Updated upstream
 # VIDEOS DIRECTORY
+=======
+
+for cat in cat_holder:
+    if len(cat) == 0:
+        continue
+    else:
+        print(cat, "\n\n")
+
+# videos dir
+# documents dir
+# pictures dir
+# handle files to check if there's videos with no folder
+# cross check names in folders
+# make a folder for movies,animes,series also pass my watchlist so it can it tell which is whichs
+# use ep count and copy or 2 to identify duplicates
+# add logic to sort and create folder for each season if more than one
+# add logs of when last the script ran for each run and the changes made
+# send a update about the file to update the regex and to check unknown folder
+# handle
+# that are in the downloads dir
+# handle everything in downloads dir before moving to any other dir
+# decouple the pattern searching into a function that is all the search for file extension should be done by a function
+>>>>>>> Stashed changes
