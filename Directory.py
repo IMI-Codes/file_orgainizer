@@ -1,6 +1,7 @@
 from os import listdir, chdir, walk
 from os.path import isfile, isdir, exists, join, getsize
 from shutil import rmtree
+from send2trash import send2trash
 
 
 class Directory:
@@ -31,9 +32,19 @@ class Directory:
 
     def get_files_in_sub_folders(self):
         # run vscode as admin or run script as admin
+        sub_dir_files = list()
         parent_sub_folders = self.dir_sub_folders
         for value in parent_sub_folders:
             if getsize(value) == 0:
                 rmtree(value)
             elif getsize(value) != 0:
-                print(value)
+                for folders, subfolders, filenames in walk(value):
+                    if len(filenames) == 0:
+                        continue  # print(folders, filenames)
+                    elif len(filenames) == 1:
+                        return join(folders, filenames[0])
+                    elif len(filenames) > 1:
+                        for value in filenames:
+                            file_path = join(folders, value)
+                            sub_dir_files.append(file_path)
+        return sub_dir_files
