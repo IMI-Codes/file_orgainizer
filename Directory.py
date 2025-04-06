@@ -1,7 +1,8 @@
 from os import listdir, chdir, walk
 from os.path import isfile, isdir, exists, join, getsize
 from shutil import rmtree
-from send2trash import send2trash
+
+# from send2trash import send2trash
 
 
 class Directory:
@@ -36,7 +37,10 @@ class Directory:
         parent_sub_folders = self.dir_sub_folders
         for value in parent_sub_folders:
             if getsize(value) == 0:
-                rmtree(value)
+                try:
+                    rmtree(value)
+                except:
+                    print(getsize(value))
             elif getsize(value) != 0:
                 for folders, subfolders, filenames in walk(value):
                     if len(filenames) == 0:
