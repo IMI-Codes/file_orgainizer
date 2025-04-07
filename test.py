@@ -1,10 +1,11 @@
 from Directory import Directory
-from os.path import exists
+from File import File
 
 download_dir = Directory("downloads", r"C:\Users\rouge\Downloads")
 document_dir = Directory("documents", r"C:\Users\rouge\OneDrive\Documents")
+desktop_dir = Directory("desktop", r"C:\Users\rouge\OneDrive\Desktop")
 
 
-print(document_dir.dir_sub_folders)
-
-print(document_dir.get_files_in_sub_folders())
+dir_fs = download_dir.get_dir_files()
+for value in dir_fs:  # type: ignore
+    print(File(value))
