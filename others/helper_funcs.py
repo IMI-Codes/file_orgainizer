@@ -1,7 +1,7 @@
 from os import chdir, listdir, walk
 from os.path import isdir, isfile, join
 from re import compile
-from global_vars_ import file_types
+from others.global_vars_ import file_types
 
 
 # VERIFIED FUNCTIONS

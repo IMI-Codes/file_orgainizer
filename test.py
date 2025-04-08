@@ -1,11 +1,58 @@
-from Directory import Directory
-from File import File
-
-download_dir = Directory("downloads", r"C:\Users\rouge\Downloads")
-document_dir = Directory("documents", r"C:\Users\rouge\OneDrive\Documents")
-desktop_dir = Directory("desktop", r"C:\Users\rouge\OneDrive\Desktop")
+from mimetypes import guess_file_type, guess_type
 
 
-dir_fs = download_dir.get_dir_files()
-for value in dir_fs:  # type: ignore
-    print(File(value))
+videos = ["test.mkv", "test.mp4", "test.webm", "test.avi", "test.mov", "test.flv"]
+picture = [
+    "test.jpg",
+    "test.png",
+    "test.svg",
+    "test.jpeg",
+    "test.gif",
+    "test.bmp",
+    "test.tif",
+    "test.tiff",
+    "test.webp",
+]
+document = [
+    "test.pdf",
+    "test.txt",
+    "test.pptx",
+    "test.docx",
+    "test.pem",
+    "test.docx",
+    "test.xls",
+    "test.xlsx",
+    "test.ppt",
+    "test.rtf",
+    "test.odt",
+    "test.ods",
+    "test.odp",
+    "test.md",
+    "test.csv",
+    "test.json",
+    "test.xml",
+]
+scripts = [
+    "test.exe",
+    "test.app",
+    "test.apk",
+    "test.ipa",
+    "test.jar",
+    "test.py",
+    "test.sh",
+    "test.bat",
+]
+sound = [
+    "test.mp3",
+    "test.wav",
+    "test.aac",
+    "test.ogg",
+    "test.flac",
+    "test.m4a",
+    "test.wma",
+]
+
+
+for vid in videos:
+    print(guess_file_type(vid), vid, 1)
+    print(guess_type(vid), vid, 2)

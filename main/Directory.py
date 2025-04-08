@@ -1,6 +1,6 @@
 from os import listdir, chdir, walk
 from os.path import isfile, isdir, exists, join, getsize
-from shutil import rmtree
+from shutil import rmtree, move
 
 from send2trash import send2trash
 
@@ -57,6 +57,9 @@ class Directory:
                 self.num_of_sub_folders += 1
                 self.dir_sub_folders.append(value)
         return
+
+    def move_file(self, source, destination):
+        move(source, destination)
 
     """ def get_files_in_sub_folders(self):
         # run vscode as admin or run script as admin
