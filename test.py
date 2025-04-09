@@ -53,6 +53,14 @@ sound = [
 ]
 
 
-for vid in videos:
+for vid in sound:
     print(guess_file_type(vid), vid, 1)
     print(guess_type(vid), vid, 2)
+
+# images get narrow
+# documents get narrow and even narrower
+# get narrow and specific with scripts
+# get very narrow with sound
+
+# return to document for more tests
+# pictures we can get more narrow
