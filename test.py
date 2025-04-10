@@ -53,7 +53,7 @@ sound = [
 ]
 
 
-for vid in sound:
+for vid in scripts:
     print(guess_file_type(vid), vid, 1)
     print(guess_type(vid), vid, 2)
 
