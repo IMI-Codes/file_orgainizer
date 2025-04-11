@@ -5,6 +5,7 @@ from mimetypes import guess_type
 
 class File:
     # create custom extension types for unknowns
+    # modify so we update a text file to add new data
 
     def __init__(self, f_name_path: str) -> None:
         if exists(f_name_path) == True:
@@ -17,8 +18,16 @@ class File:
             self.get_extension()
             if self.file_type is not None:
                 self.determine_exact_type()
+            else:
+                return None
         else:
             return None
+
+    def get_file_name(self):
+        return self.f_name
+
+    def get_file_path(self):
+        return self.f_name_full_path
 
     def determine_file_type(self):
         file_name = self.f_name
@@ -47,10 +56,3 @@ class File:
 
     def set_file_data(self):
         pass
-
-
-f1 = File(
-    r"C:\Users\rouge\Downloads\Star_Wars_The_Bad_Batch_-_S03E14_0dea7769082fa81a523d655fbfb29913.webm"
-)
-
-print(f1.exact_file_type)

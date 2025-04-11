@@ -61,24 +61,15 @@ class Directory:
     def move_file(self, source, destination):
         move(source, destination)
 
-    """ def get_files_in_sub_folders(self):
-        # run vscode as admin or run script as admin
-        sub_dir_files = list()
-        parent_sub_folders = self.dir_sub_folders
-        for value in parent_sub_folders:
-            if getsize(value) == 0:
-                try:
-                    rmtree(value)
-                except:
-                    send2trash(value)
-            elif getsize(value) != 0:
-                for folders, subfolders, filenames in walk(value):
-                    if len(filenames) == 0:
-                        continue  # print(folders, filenames)
-                    elif len(filenames) == 1:
-                        return join(folders, filenames[0])
-                    elif len(filenames) > 1:
-                        for value in filenames:
-                            file_path = join(folders, value)
-                            sub_dir_files.append(file_path)
-        return sub_dir_files """
+    def get_sub_files(self):
+        sub_files = list()
+        sub_folders = self.dir_sub_folders
+        for f in sub_folders:
+            for base_path, sub_f, files in walk(f):
+                if len(files) == 0:
+                    continue
+                else:
+                    """if len(files) != 1
+                    print(val1, val2, val3)
+                    print(exists(join(val1, val3[0])))
+                    """
