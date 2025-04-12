@@ -17,8 +17,28 @@ class Directory:
             self.dir_files = list()
             self.dir_sub_folders = list()
             self.get_dir_contents()
+            self.sub_files = list()
         else:
             raise Exception
+
+    def get_sub_dir_files(self):
+        return self.sub_files
+
+    def remove_folder(self, f_name):
+        if exists(f_name):
+            collection = self.dir_sub_folders
+            collection.remove(f_name)
+            return
+        else:
+            return None
+
+    def remove_file(self, f_name):
+        if exists(f_name):
+            collection = self.dir_files
+            collection.remove(f_name)
+            return
+        else:
+            return None
 
     def get_dir_name(self):
         return self.directory_name
@@ -62,14 +82,13 @@ class Directory:
         move(source, destination)
 
     def get_sub_files(self):
-        sub_files = list()
         sub_folders = self.dir_sub_folders
         for f in sub_folders:
             for base_path, sub_f, files in walk(f):
                 if len(files) == 0:
                     continue
                 else:
-                    """if len(files) != 1
-                    print(val1, val2, val3)
-                    print(exists(join(val1, val3[0])))
-                    """
+                    if len(files) > 0:
+                        for val in files:
+                            self.sub_files.append(join(base_path, val))
+        return
